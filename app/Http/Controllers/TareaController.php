@@ -62,9 +62,10 @@ class TareaController extends Controller
      * @param  \App\tareas  $tareas
      * @return \Illuminate\Http\Response
      */
-    public function show(tareas $tareas)
-    {
-        return response()->json($tareas);
+    public function show(Request $request)
+    {   
+        $tarea = tareas::findOrFail($request->id);
+        return response()->json($tarea);
     }
 
     /**

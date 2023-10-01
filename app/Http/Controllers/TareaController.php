@@ -111,7 +111,7 @@ class TareaController extends Controller
             return response()->json($tareaD);
         }else{
 
-            return response()->json('no se puede eliminar ya que tiene likes');
+            return response()->json('no se puede eliminar ya que tiene likes!');
         }
         
         

@@ -48,6 +48,12 @@ class TareaController extends Controller
             $tarea->likes = $tarea->likes +1;
         }
         $tarea -> save();
+
+        $data = [
+            'message' => 'Tarea creada con exito',
+            'tarea' => $tarea
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -58,7 +64,7 @@ class TareaController extends Controller
      */
     public function show(tareas $tareas)
     {
-        //
+        return response()->json($tareas);
     }
 
     /**
@@ -91,7 +97,12 @@ class TareaController extends Controller
             $tarea->likes = $tarea->likes +1;
         }
         $tarea -> save();
-        return $tarea;
+
+        $data = [
+            'message' => 'tarea actualizada con exito',
+            'tarea' => $tarea
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -108,11 +119,19 @@ class TareaController extends Controller
 
         if($tarea->likes == 0){
             $tareaD = tareas::destroy($request->id);
-            return response()->json($tareaD);
+            $mensaje = 'tarea actualizada con exito';
+      
         }else{
-
-            return response()->json('no se puede eliminar ya que tiene likes!');
+            $mensaje = 'esta tarea no se puede eliminar ya que tiene likes';
+            $tareaD = $tarea;
+            
         }
+
+        $data = [
+            'message' => $mensaje,
+            'tarea' => $tareaD
+        ];
+        return response()->json($data);
         
         
     }
